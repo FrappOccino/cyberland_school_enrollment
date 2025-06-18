@@ -1,5 +1,5 @@
 import { useForm, usePage } from '@inertiajs/inertia-react';
-import { routeUrl } from '../../config';
+import { routeUrl } from '../config';
 
 export default function EnrollmentForm() {
     const flash = usePage().props.flash || {};

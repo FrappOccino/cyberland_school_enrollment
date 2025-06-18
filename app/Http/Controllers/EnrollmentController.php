@@ -56,8 +56,7 @@ class EnrollmentController extends Controller
 
     public function index()
     {
-        $enrollments = Enrollment::all();
-        return Inertia::render('Admin/EnrollmentList', ['enrollments' => $enrollments]);
+        return Inertia::render('EnrollmentForm');
     }
 
     public function export()
