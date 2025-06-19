@@ -13,7 +13,7 @@ class RegisterController extends Controller
 {
     public function show()
     {
-        return Inertia::render('Register');
+        return Inertia::render('Admin/Register');
     }
 
     public function store(Request $request)
@@ -32,6 +32,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('admin'); // or wherever you want to go
+        return redirect()->route('admin.index'); // or wherever you want to go
     }
 }

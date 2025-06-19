@@ -21,7 +21,7 @@
                             </p>
 
                             <p style="font-size: 16px; color: #555555;">
-                                Thank you for enrolling your child at <strong>Cyberland School</strong>. We have received your submission successfully.
+                                Thank you for enrolling your child at <strong>Cyberland Academy</strong>. We have received your submission successfully.
                             </p>
 
                             <p style="font-size: 16px; color: #555555;">
@@ -30,14 +30,14 @@
 
                             <p style="font-size: 16px; color: #555555;">
                                 Best regards,<br>
-                                <strong>Cyberland School Admissions Team</strong>
+                                <strong>Cyberland Academy Admissions Team</strong>
                             </p>
                         </td>
                     </tr>
                 </table>
 
                 <p style="font-size: 12px; color: #999999; margin-top: 20px;">
-                    © {{ date('Y') }} Cyberland School. All rights reserved.
+                    © {{ date('Y') }} Cyberland Academy. All rights reserved.
                 </p>
             </td>
         </tr>

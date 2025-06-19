@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return Inertia::render('Login');
+        return Inertia::render('Admin/Login');
     }
 
     public function login(Request $request)
@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('admin');
+            return redirect()->route('admin.index');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');

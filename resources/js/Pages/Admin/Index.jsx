@@ -1,8 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import EnrollmentList from './EnrollmentList.jsx';
-// import { usePage } from '@inertiajs/react';
-import { routeUrl } from '../config.js';
+import EnrollmentListTable from './EnrollmentListTable';
+import { routeUrl } from '../../config';
 import { useForm, usePage } from '@inertiajs/inertia-react';
 
 
@@ -29,7 +28,7 @@ function classNames(...classes) {
 return classes.filter(Boolean).join(' ')
 }
 
-export default function Admin({enrollments}) {
+export default function Index({enrollments}) {
     const {post} = useForm();
    
     const submit = (e) => {
@@ -40,14 +39,6 @@ export default function Admin({enrollments}) {
 
 return (
     <>
-    {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-    */}
     <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -201,7 +192,7 @@ return (
         </header>
         <main className="bg-gradient-to-t from-blue-200 to-slate-50 min-h-screen">
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <EnrollmentList enrollments={enrollments} />
+                <EnrollmentListTable enrollments={enrollments} />
             </div>
         </main>
     </div>

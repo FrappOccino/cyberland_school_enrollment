@@ -1,6 +1,6 @@
-import { routeUrl } from "../config";
+import { routeUrl } from "../../config";
 
-export default function EnrollmentList({ enrollments }) {
+export default function EnrollmentListTable({ enrollments }) {
   const handleDownload = () => {
     window.location.href = routeUrl('/admin/export');
   };
@@ -43,7 +43,7 @@ export default function EnrollmentList({ enrollments }) {
       </div>
 
       {/* Table */}
-      <div class="max-h-svh overflow-y-auto">
+      <div className="max-h-svh overflow-y-auto">
       <table className="w-full text-sm text-left text-gray-600 max-h-screen overflow-y-auto">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
