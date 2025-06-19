@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->route('admin');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
@@ -32,6 +32,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        // dd($request);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

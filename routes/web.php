@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/enrollments', [EnrollmentController::class, 'index']);
     Route::get('/admin/export', [EnrollmentController::class, 'export']);
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/logout', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout']);
 });
 
 

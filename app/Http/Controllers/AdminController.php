@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(Enrollment $enrollment){
-        return Inertia::render('EnrollmentList', [
+        return Inertia::render('Admin', [
             'enrollments' => $enrollment->all(),
         ]);
     }
