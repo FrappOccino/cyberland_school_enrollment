@@ -12,7 +12,11 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return Inertia::render('Admin/Login');
+        if(!Auth::check()){
+            return Inertia::render('Admin/Login');
+        }
+
+        return redirect()->route('admin.index');
     }
 
     public function login(Request $request)

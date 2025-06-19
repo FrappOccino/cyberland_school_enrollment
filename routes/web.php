@@ -10,9 +10,10 @@ use App\Http\Controllers\EnrollmentController;
 Route::get('/', fn() => Inertia::render('Home'));
 Route::get('/enroll', fn() => Inertia::render('Parent/EnrollmentForm'));
 Route::post('/enroll', [EnrollmentController::class, 'store']);
+Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login');
+
 
 Route::middleware('guest')->group(function () {
-    Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('admin/register', [RegisterController::class, 'show'])->name('admin-register');
     Route::post('admin/register', [RegisterController::class, 'store']);
