@@ -16,7 +16,7 @@ class EnrollmentController extends Controller
 
     public function store(Request $request, Enrollment $enrollment)
     {
-        
+
         $validated = $request->validate([
             'child_name' => 'required',
             'child_birthday' => 'required|date',
@@ -26,11 +26,11 @@ class EnrollmentController extends Controller
             'parent_email' => 'required|email',
             'parent_relationship' => 'required',
         ]);
-        
-        $enrollment->create($validated);
-
-        // SendEnrollmentEmails::dispatchSync($validated);
-        SendEnrollmentEmails::dispatch($validated);
+            
+        // Create the enrollment and get the model instance 
+        $enrollment = Enrollment::create($validated);
+        // Dispatch the job using the full model (or just ID if preferred)
+        SendEnrollmentEmails::dispatch($enrollment); // or ->dispatch($enrollment->id)
 
         return redirect()->back()->with('success', 'Enrollment submitted successfully!');
 

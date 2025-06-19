@@ -2,26 +2,27 @@
 
 namespace App\Jobs;
 
+use App\Models\Enrollment;
+use App\Mail\ParentConfirmationMail;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ParentConfirmationMail;
 
 class SendEnrollmentEmails implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $data;
+    protected Enrollment $enrollment;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(array $data)
+    public function __construct(Enrollment $enrollment)
     {
-        $this->data = $data;
+        $this->enrollment = $enrollment;
     }
 
     /**
@@ -33,21 +34,21 @@ class SendEnrollmentEmails implements ShouldQueue
         Mail::html("
             <h2>New Enrollment Submitted:</h2>
             <ul>
-                <li><strong>Child Name:</strong> {$this->data['child_name']}</li>
-                <li><strong>Birthday:</strong> {$this->data['child_birthday']}</li>
-                <li><strong>LRN:</strong> {$this->data['lrn']}</li>
-                <li><strong>Parent Name:</strong> {$this->data['parent_name']}</li>
-                <li><strong>Contact:</strong> {$this->data['parent_contact']}</li>
-                <li><strong>Email:</strong> {$this->data['parent_email']}</li>
-                <li><strong>Relationship:</strong> {$this->data['parent_relationship']}</li>
+                <li><strong>Child Name:</strong> {$this->enrollment->child_name}</li>
+                <li><strong>Birthday:</strong> {$this->enrollment->child_birthday}</li>
+                <li><strong>LRN:</strong> {$this->enrollment->lrn}</li>
+                <li><strong>Parent Name:</strong> {$this->enrollment->parent_name}</li>
+                <li><strong>Contact:</strong> {$this->enrollment->parent_contact}</li>
+                <li><strong>Email:</strong> {$this->enrollment->parent_email}</li>
+                <li><strong>Relationship:</strong> {$this->enrollment->parent_relationship}</li>
             </ul>
         ", function ($message) {
-            $message->to(env('MAIL_USERNAME'))->subject('New Enrollment');
+            $message->to(env('MAIL_USERNAME'))
+                    ->subject('New Enrollment | ' . ' ID: ' . $this->enrollment->id);
         });
 
         // Send confirmation to parent
-        Mail::to($this->data['parent_email'])
-            ->send(new ParentConfirmationMail($this->data['parent_name']));
+        Mail::to($this->enrollment->parent_email)
+            ->send(new ParentConfirmationMail($this->enrollment->parent_name));
     }
 }
-
