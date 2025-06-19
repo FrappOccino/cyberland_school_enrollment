@@ -43,28 +43,31 @@ export default function EnrollmentList({ enrollments }) {
       </div>
 
       {/* Table */}
-      <table className="w-full text-sm text-left text-gray-600">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-          <tr>
-            {['Child Name', 'Birthday', 'LRN', 'Parent', 'Contact', 'Email', 'Relationship'].map((header) => (
-              <th key={header} className="px-6 py-3 font-medium">{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {enrollments.map((e) => (
-            <tr key={e.id} className="bg-white border-b hover:bg-gray-50 transition duration-200 ease-in-out">
-              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{e.child_name}</td>
-              <td className="px-6 py-4">{e.child_birthday}</td>
-              <td className="px-6 py-4">{e.lrn}</td>
-              <td className="px-6 py-4">{e.parent_name}</td>
-              <td className="px-6 py-4">{e.parent_contact}</td>
-              <td className="px-6 py-4">{e.parent_email}</td>
-              <td className="px-6 py-4">{e.parent_relationship}</td>
+      <div class="max-h-svh overflow-y-auto">
+      <table className="w-full text-sm text-left text-gray-600 max-h-screen overflow-y-auto">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+            <tr>
+              {['Child Name', 'Birthday', 'LRN', 'Parent', 'Contact', 'Email', 'Relationship'].map((header) => (
+                <th key={header} className="px-6 py-3 font-medium">{header}</th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {enrollments.map((e) => (
+              <tr key={e.id} className="bg-white border-b hover:bg-gray-50 transition duration-200 ease-in-out">
+                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{e.child_name}</td>
+                <td className="px-6 py-4">{e.child_birthday}</td>
+                <td className="px-6 py-4">{e.lrn}</td>
+                <td className="px-6 py-4">{e.parent_name}</td>
+                <td className="px-6 py-4">{e.parent_contact}</td>
+                <td className="px-6 py-4">{e.parent_email}</td>
+                <td className="px-6 py-4">{e.parent_relationship}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
     </div>
   );
 }

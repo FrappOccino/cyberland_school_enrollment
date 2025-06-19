@@ -27,7 +27,7 @@ class ParentConfirmationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Parent Confirmation Mail',
+            subject: 'Enrollment Confirmation Mail',
         );
     }
 
