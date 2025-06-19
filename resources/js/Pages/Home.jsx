@@ -50,7 +50,7 @@ export default function Home() {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href={adminLoginLink} className="text-sm/6 font-semibold text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
+              Admin Login <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </nav>
@@ -137,7 +137,7 @@ export default function Home() {
                 href={enrollmentLink}
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Get started
+                Enroll Now!
               </a>
               <a href='#' className="text-sm/6 font-semibold text-gray-900">
                 Learn more <span aria-hidden="true">→</span>

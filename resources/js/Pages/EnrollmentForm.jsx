@@ -4,7 +4,9 @@ import { routeUrl } from '../config';
 export default function EnrollmentForm() {
     const flash = usePage().props.flash || {};
 
-    const { data, setData, post, processing, errors } = useForm({
+    const homeLink = routeUrl('/');
+
+    const { data, setData, post, reset, processing, errors } = useForm({
         child_name: '',
         child_birthday: '',
         lrn: '',
@@ -16,12 +18,27 @@ export default function EnrollmentForm() {
 
     const submit = (e) => {
         e.preventDefault();
-        post(routeUrl('enroll'));
+            post(routeUrl('enroll'), {
+            onSuccess: () => {
+                reset(); // <-- Clears the form fields
+            },
+        });
     };
 
     return (
 
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-slate-50 to-blue-300">
+        <div className="min-h-screen items-center justify-center bg-gradient-to-r from-slate-50 to-blue-300">
+            <a
+            href={homeLink}
+            className="m-5 inline-flex items-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-md transition-all duration-200 disabled:opacity-50"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+            </svg>
+
+            <span>Home</span>
+            </a>
+
             <form onSubmit={submit} className="space-y-6 w-96 mx-auto bg-white shadow-md p-6 rounded-lg">
                 <h2 className="text-xl font-semibold text-center">Enrollment Form</h2>
                 <div>

@@ -3,64 +3,9 @@
     import { routeUrl } from '../config';
 
 
-    // export default function Login() {
-    // const { data, setData, post, processing, errors } = useForm({
-    //     email: '',
-    //     password: '',
-    //     remember: false,
-    // });
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     post(routeUrl());
-    // };
-
-    // return (
-    //     <div>
-    //     <h1>Login</h1>
-
-    //     <form onSubmit={handleSubmit}>
-    //         <div>
-    //         <label>Email</label><br />
-            // <input
-            //     type="email"
-            //     value={data.email}
-            //     onChange={e => setData('email', e.target.value)}
-            //     required
-            // />
-    //         {errors.email && <div>{errors.email}</div>}
-    //         </div>
-
-    //         <div>
-    //         <label>Password</label><br />
-            // <input
-            //     type="password"
-            //     value={data.password}
-            //     onChange={e => setData('password', e.target.value)}
-            //     required
-            // />
-    //         {errors.password && <div>{errors.password}</div>}
-    //         </div>
-
-    //         <div>
-    //         <label>
-    //             <input
-    //             type="checkbox"
-    //             checked={data.remember}
-    //             onChange={e => setData('remember', e.target.checked)}
-    //             />
-    //             Remember me
-    //         </label>
-    //         </div>
-
-    //         <button type="submit" disabled={processing}>
-    //         {processing ? 'Logging in...' : 'Login'}
-    //         </button>
-    //     </form>
-    //     </div>
-    // );
-    // }
 export default function Login() {
+    const adminRegLink = routeUrl('register');
+
     const { data, setData, post, processing, errors } = useForm({
         email: '',
         password: '',
@@ -145,8 +90,8 @@ return (
 
         <p className="mt-10 text-center text-sm/6 text-gray-500">
             Not a member?{' '}
-            <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-            Start a 14 day free trial
+            <a href={adminRegLink} className="font-semibold text-indigo-600 hover:text-indigo-500">
+            Register now
             </a>
         </p>
         </div>
