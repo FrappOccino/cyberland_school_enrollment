@@ -46,5 +46,4 @@ class EnrollmentController extends Controller
         return Excel::download(new EnrollmentsExport, 'enrollments.xlsx');
     }
 
-
 }

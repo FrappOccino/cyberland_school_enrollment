@@ -1,11 +1,11 @@
 import { useForm, usePage } from "@inertiajs/inertia-react";
 import { routeUrl } from "../../config";
 import HomeButton from "../../components/ui/HomeButton";
+import { useEffect, useState } from "react";
 
 export default function EnrollmentForm() {
     const flash = usePage().props.flash || {};
-
-    const homeLink = routeUrl("/");
+    const [successMessage, setSuccessMessage] = useState(null);
 
     const { data, setData, post, reset, processing, errors } = useForm({
         child_name: "",
@@ -17,11 +17,20 @@ export default function EnrollmentForm() {
         parent_relationship: "",
     });
 
+    useEffect(() => {
+        if (flash.success) {
+            setSuccessMessage(flash.success);
+        }
+    }, [flash.success]);
+
     const submit = (e) => {
         e.preventDefault();
+
+        setSuccessMessage(flash.success);
+
         post(routeUrl("enroll"), {
             onSuccess: () => {
-                reset(); // <-- Clears the form fields
+                reset(); 
             },
         });
     };
@@ -200,10 +209,15 @@ export default function EnrollmentForm() {
                 >
                     {processing ? "Submitting..." : "Submit"}
                 </button>
-
+                {/* 
                 {flash.success && (
                     <div className="mt-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded-md">
                         {flash.success}
+                    </div>
+                )} */}
+                {successMessage && (
+                    <div className="mt-4 bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded-md">
+                        {successMessage}
                     </div>
                 )}
             </form>
