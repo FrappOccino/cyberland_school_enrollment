@@ -8,6 +8,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EnrollmentController;
 
 Route::get('/', fn() => Inertia::render('Home'));
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/enroll', fn() => Inertia::render('Parent/EnrollmentForm'));
 Route::post('/enroll', [EnrollmentController::class, 'store']);
 Route::get('admin/login', [LoginController::class, 'showLoginForm'])->name('login');

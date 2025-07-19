@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { routeUrl } from "../config";
-
 const navigation = [
     { name: "Home", href: "#" },
     { name: "About", href: "#" },
@@ -14,7 +13,6 @@ export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const adminLoginLink = routeUrl('admin/login');
     const enrollmentLink = routeUrl('enroll');
-
     return (
         <div className="bg-white">
             <header className="absolute inset-x-0 top-0 z-50">

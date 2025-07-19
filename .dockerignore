@@ -1,0 +1,42 @@
+# Node dependencies
+node_modules
+*.log
+
+# Composer dependencies (we install in image)
+vendor
+
+# Environment files
+.env
+.env.*
+
+# Vite build cache
+public/hot
+public/build
+storage/*.key
+
+# Laravel storage cache
+storage/app/public
+storage/framework
+storage/logs
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode
+.idea
+
+# Docker-related
+docker/**/.dockerignore
+docker/**/Dockerfile
+
+
+
+storage/logs
+storage/framework/sessions
+storage/framework/views
+
+.vscode
+
+compose.dev copy.yml

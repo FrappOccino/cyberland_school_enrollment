@@ -1,0 +1,55 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/development/php-fpm/Dockerfile
+    volumes:
+      - .:/var/www
+    networks:
+      - cyberland-network
+    depends_on:
+      - db
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - .:/var/www
+      - ./docker/development/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8000:80"
+    depends_on:
+      - app
+    networks:
+      - cyberland-network
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - cyberland-network
+
+  vite:
+    image: node:18-alpine
+    container_name: vite
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "5173:5173"
+    networks:
+      - cyberland-network
+
+networks:
+  cyberland-network:
+    driver: bridge
+
+volumes:
+  db-data:
