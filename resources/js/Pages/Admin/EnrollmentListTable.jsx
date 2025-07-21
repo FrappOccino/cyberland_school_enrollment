@@ -1,8 +1,6 @@
-import { routeUrl } from "../../config";
-
 export default function EnrollmentListTable({ enrollments }) {
   const handleDownload = () => {
-    window.location.href = routeUrl('/admin/export');
+    window.location.href = "/admin/export";
   };
 
   return (

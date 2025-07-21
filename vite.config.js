@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+    base: '/',
     server: {
         host: true, // Listen on 0.0.0.0 for Docker access
         port: 5173,

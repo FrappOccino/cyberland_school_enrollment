@@ -1,11 +1,8 @@
 import React from "react";
 import { useForm } from "@inertiajs/inertia-react";
-import { routeUrl } from "../../config";
 import HomeButton from "../../components/ui/HomeButton";
 
 export default function Login() {
-    const adminRegLink = routeUrl("admin/register");
-
     const { data, setData, post, processing, errors } = useForm({
         email: "",
         password: "",
@@ -14,7 +11,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(routeUrl("login"));
+        post("/login");
     };
 
     return (
@@ -102,7 +99,7 @@ export default function Login() {
                         <p className="mt-10 text-center text-sm/6 text-gray-500">
                             Not a member?{" "}
                             <a
-                                href={adminRegLink}
+                                href="admin/register"
                                 className="font-semibold text-indigo-600 hover:text-indigo-500"
                             >
                                 Register now

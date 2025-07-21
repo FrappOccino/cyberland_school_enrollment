@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "@inertiajs/inertia-react";
-import { routeUrl } from "../../config";
 import HomeButton from "../../components/ui/HomeButton";
 
 export default function Register() {
@@ -13,7 +12,7 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(routeUrl("admin/register"));
+        post("/admin/register");
     };
 
     return (

@@ -1,7 +1,6 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import EnrollmentListTable from './EnrollmentListTable';
-import { routeUrl } from '../../config';
 import { useForm, usePage } from '@inertiajs/inertia-react';
 
 
@@ -33,7 +32,7 @@ export default function Index({enrollments}) {
    
     const submit = (e) => {
         e.preventDefault();
-        post(routeUrl('logout'));
+        post('logout');
     };
     
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { routeUrl } from "../config";
 const navigation = [
     { name: "Home", href: "#" },
     { name: "About", href: "#" },
@@ -11,8 +10,6 @@ const navigation = [
 
 export default function Home() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const adminLoginLink = routeUrl('admin/login');
-    const enrollmentLink = routeUrl('enroll');
     return (
         <div className="bg-white">
             <header className="absolute inset-x-0 top-0 z-50">
@@ -53,7 +50,7 @@ export default function Home() {
                     </div>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                         <a
-                            href={adminLoginLink}
+                            href="admin/login"
                             className="text-sm/6 font-semibold text-gray-900"
                         >
                             Admin Login <span aria-hidden="true">&rarr;</span>
@@ -103,7 +100,7 @@ export default function Home() {
                                 </div>
                                 <div className="py-6">
                                     <a
-                                        href={adminLoginLink}
+                                        href="admin/login"
                                         className="text-sm/6 font-semibold text-gray-900"
                                     >
                                         Admin Login{" "}
@@ -155,6 +152,7 @@ export default function Home() {
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <a
+                                // href={enrollmentLink}
                                 href="enroll"
                                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >

@@ -23,7 +23,7 @@ services:
       - cyberland-app-production:/var/www                  # Shared app build volume
       - ./storage-init:/var/www/storage-init:ro            # Seed files
       - cyberland-storage-production:/var/www/storage      # Persistent volume for Laravel storage
-      - ./.env:/var/www/.env:ro                            # Laravel .env file
+      - ./.env.prod:/var/www/.env:ro                            # Laravel .env file
     env_file:
       - .env
     networks:

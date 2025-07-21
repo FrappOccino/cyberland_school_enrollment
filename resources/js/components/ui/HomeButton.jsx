@@ -1,9 +1,7 @@
-import { routeUrl } from '../../config';
-
-export default function HomeButton({ homeLink = routeUrl('/') }) {
+export default function HomeButton(){
     return (
         <a
-            href={homeLink}
+            href="/"
             className="size-fit m-5 inline-flex items-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-semibold py-3 px-4 rounded-md transition-all duration-200 disabled:opacity-50"
         >
             <svg

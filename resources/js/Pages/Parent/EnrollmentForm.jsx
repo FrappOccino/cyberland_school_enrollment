@@ -1,8 +1,6 @@
 import { useForm, usePage } from "@inertiajs/inertia-react";
-import { routeUrl } from "../../config";
 import HomeButton from "../../components/ui/HomeButton";
 import { useEffect, useState } from "react";
-console.log("APP_URL from routeUrl:", routeUrl('test'));
 
 export default function EnrollmentForm() {
     const flash = usePage().props.flash || {};
@@ -29,11 +27,11 @@ export default function EnrollmentForm() {
 
         setSuccessMessage(flash.success);
 
-        post(routeUrl("enroll"), {
+        post("/enroll"), {
             onSuccess: () => {
                 reset(); 
             },
-        });
+        };
     };
 
     return (
