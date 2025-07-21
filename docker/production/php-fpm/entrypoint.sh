@@ -1,32 +1,47 @@
 #!/bin/sh
 set -e
 
-# Initialize storage directory if empty
+# # -----------------------------------------------------------
+# # Wait for MySQL to be ready
+# # -----------------------------------------------------------
+# echo "Waiting for the database to be ready..."
+# until php artisan migrate:status > /dev/null 2>&1; do
+#   sleep 2
+# done
+# echo "Database is ready!"
+
 # -----------------------------------------------------------
-# If the storage directory is empty, copy the initial contents
-# and set the correct permissions.
+# Initialize the storage directory if empty (fresh volume)
 # -----------------------------------------------------------
 if [ ! "$(ls -A /var/www/storage)" ]; then
-  echo "Initializing storage directory..."
+  echo "📁 Initializing storage directory..."
   cp -R /var/www/storage-init/. /var/www/storage
   chown -R www-data:www-data /var/www/storage
 fi
 
-# Remove storage-init directory
-rm -rf /var/www/storage-init
+# Ensure critical storage subdirectories always exist
+mkdir -p /var/www/storage/framework/sessions
+mkdir -p /var/www/storage/framework/views
+mkdir -p /var/www/storage/framework/cache
+mkdir -p /var/www/storage/logs
+mkdir -p /var/www/storage/app/public
 
-# Run Laravel migrations
+# Ensure correct ownership (in case volume was pre-mounted)
+chown -R www-data:www-data /var/www/storage
+
 # -----------------------------------------------------------
-# Ensure the database schema is up to date.
+# Laravel Setup: Migrations and Caching
 # -----------------------------------------------------------
+echo "Running Laravel migrations..."
 php artisan migrate --force
 
-# Clear and cache configurations
-# -----------------------------------------------------------
-# Improves performance by caching config and routes.
-# -----------------------------------------------------------
+echo "Caching configuration and routes..."
+php artisan config:clear
 php artisan config:cache
+php artisan route:clear
 php artisan route:cache
 
-# Run the default command
+# -----------------------------------------------------------
+# Run the main container command (php-fpm)
+# -----------------------------------------------------------
 exec "$@"
