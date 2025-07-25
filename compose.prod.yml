@@ -9,7 +9,7 @@ services:
     networks:
       - cyberland-production
     ports:
-      - "8080:80"
+      - "6000:80"
     depends_on:
       - php-fpm
 
