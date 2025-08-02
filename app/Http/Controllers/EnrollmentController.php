@@ -30,7 +30,7 @@ class EnrollmentController extends Controller
         // Create the enrollment and get the model instance 
         $enrollment = Enrollment::create($validated);
         // Dispatch the job using the full model (or just ID if preferred)
-        SendEnrollmentEmails::dispatch($enrollment); // or ->dispatch($enrollment->id)
+        // SendEnrollmentEmails::dispatch($enrollment); // or ->dispatch($enrollment->id)
 
         return redirect()->back()->with('success', 'Enrollment submitted successfully!');
 
